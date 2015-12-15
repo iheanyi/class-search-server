@@ -35,5 +35,6 @@ defmodule ClassSearch.Endpoint do
     key: "_class_search_key",
     signing_salt: "Eo/7PWue"
 
+  plug CORSPlug, [origin: "http://localhost:4200"]
   plug ClassSearch.Router
 end

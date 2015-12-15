@@ -38,6 +38,8 @@ defmodule ClassSearch.Mixfile do
      {:cowboy, "~> 1.0"},
      {:httpoison, "~> 0.8.0"},
      {:floki, "~> 0.7"},
+     {:cors_plug, "~> 0.1.4"},
+     {:ja_serializer, "~>0.6.0"},
     ]
   end
 

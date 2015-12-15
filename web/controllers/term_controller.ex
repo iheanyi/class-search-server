@@ -2,12 +2,15 @@ defmodule ClassSearch.TermController do
   use ClassSearch.Web, :controller
 
   alias ClassSearch.Term
-
+  alias ClassSearch.TermSerializer
   plug :scrub_params, "term" when action in [:create, :update]
 
   def index(conn, _params) do
     terms = Repo.all(Term)
-    render(conn, "index.json", terms: terms)
+    |> TermSerializer.format(conn)
+
+    json(conn, terms)
+    #render(conn, "index.json", terms: terms)
   end
 
   def create(conn, %{"term" => term_params}) do
