@@ -17,5 +17,6 @@ defmodule ClassSearch.Router do
     pipe_through :api
 
     resources "/terms", TermController
+    resources "/departments", DepartmentController
   end
 end
