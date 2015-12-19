@@ -11,6 +11,7 @@ defmodule ClassSearch.DepartmentView do
 
   def render("department.json", %{department: department}) do
     %{name: department.name,
-      tag: department.tag}
+      tag: department.tag,
+      type: "department"}
   end
 end

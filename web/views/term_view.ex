@@ -1,6 +1,10 @@
 defmodule ClassSearch.TermView do
   use ClassSearch.Web, :view
-
+  
+  attributes [:name, :tag]
+  
+  def id(model, _conn), do: model.tag
+  
   def render("index.json", %{terms: terms}) do
     %{data: render_many(terms, ClassSearch.TermView, "term.json")}
   end
@@ -11,6 +15,7 @@ defmodule ClassSearch.TermView do
 
   def render("term.json", %{term: term}) do
     %{name: term.name,
-      tag: term.tag}
+      tag: term.tag,
+    }
   end
 end

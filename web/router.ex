@@ -11,7 +11,7 @@ defmodule ClassSearch.Router do
 
   pipeline :api do
     plug :accepts, ["json-api"]
-    plug ClassSearch.DeserializePlug
+    plug JaSerializer.Deserializer
   end
 
   scope "/", ClassSearch do

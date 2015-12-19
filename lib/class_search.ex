@@ -12,6 +12,7 @@ defmodule ClassSearch do
       # Start the Ecto repository
       worker(ClassSearch.Repo, []),
       # Here you could define other workers and supervisors as children
+      worker(ClassSearch.Periodically, [])
       # worker(ClassSearch.Worker, [arg1, arg2, arg3]),
     ]
 

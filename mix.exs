@@ -40,6 +40,7 @@ defmodule ClassSearch.Mixfile do
      {:floki, "~> 0.7"},
      {:cors_plug, "~> 0.1.4"},
      {:ja_serializer, "~>0.6.0"},
+     {:exrm, "~> 0.18.1"}
     ]
   end
 

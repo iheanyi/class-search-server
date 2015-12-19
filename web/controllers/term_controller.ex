@@ -7,10 +7,9 @@ defmodule ClassSearch.TermController do
 
   def index(conn, _params) do
     terms = Repo.all(Term)
-    |> TermSerializer.format(conn)
+    #|> TermSerializer.format(conn)
 
-    json(conn, terms)
-    #render(conn, "index.json", terms: terms)
+    render(conn, "index.json", terms: terms)
   end
 
   def create(conn, %{"term" => term_params}) do
