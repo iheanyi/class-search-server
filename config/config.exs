@@ -32,3 +32,8 @@ config :plug, :mimes, %{
   "application/vnd.api+json" => ["json-api"]
 }
 
+
+# This line was automatically added by ansible-elixir-stack setup script
+if System.get_env("SERVER") do
+  config :phoenix, :serve_endpoints, true
+end
