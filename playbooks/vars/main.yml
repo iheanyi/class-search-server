@@ -2,4 +2,3 @@
 app_name: class_search
 repo_url: "git@github.com:iheanyi/class-search-server.git"
 app_port: 3001
-build_frontend: False
