@@ -157,11 +157,18 @@ defmodule Scraper do
           |> String.split(", ", trim: true) #String.split(instructor_name_text, ", ", trim: true)
           [instructor_last, instructor_first] = instructor_name_array
           instructor = "#{instructor_first} #{instructor_last}"
+          instructor_obj = %{
+            name: "#{instructor_first} #{instructor_last}",
+            instructor_id: instructor_id,
+          }
         else 
           # The instructor will probably be TBA -_-
-          instructor = "TBA"
+          instructor_obj = %{
+            name: "TBA",
+            instructor_id: "",
+          }
         end
-        instructor
+        instructor_obj
       end)
       
       # If name_length >= 2, we have a valid instructor
@@ -215,7 +222,13 @@ defmodule Scraper do
       IO.puts "CRN #{course_reg_number}"
       IO.puts "Timeslots: #{timeslots}"
       IO.puts "Times: #{Enum.join(times, ", ")}"
-      IO.puts "Instructor(s): #{Enum.join(instructors, ", ")}"
+      
+      formatted_instructors = instructors
+      |> Enum.map(fn instructor -> instructor.name end)
+      |> Enum.join(", ")
+      
+      IO.puts "Instructor(s): #{formatted_instructors}"
+
       IO.puts "#{credits} credits, #{open_seats}/#{max_seats} seats left"
       IO.puts "Starts #{begin_date} and Ends #{end_date}"
       IO.puts "Location: #{location}"
@@ -301,7 +314,7 @@ defmodule Scraper do
           dept_courses = fetch_term_dept_html(term.value, dept.value)
           %{
             dept: %{
-              name: dept.name,
+              name: String.strip(dept.name),
               value: dept.value,
             },
             courses: dept_courses,
@@ -310,12 +323,14 @@ defmodule Scraper do
         #end
         %{
           term: %{
-            name: term.name,
+            name: String.strip(term.name),
             value: term.value,
           },
           dept_courses: courses,
         }
     end)
+
+    IO.inspect all_courses
   end
 
   @doc """
