@@ -1,6 +1,10 @@
 defmodule ClassSearch.DepartmentView do
   use ClassSearch.Web, :view
 
+  attributes [:name, :tag]
+
+  def id(model, _conn), do: model.tag
+
   def render("index.json", %{departments: departments}) do
     %{data: render_many(departments, ClassSearch.DepartmentView, "department.json")}
   end
@@ -12,6 +16,6 @@ defmodule ClassSearch.DepartmentView do
   def render("department.json", %{department: department}) do
     %{name: department.name,
       tag: department.tag,
-      type: "department"}
+    }
   end
 end
