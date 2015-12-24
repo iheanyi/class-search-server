@@ -11,3 +11,4 @@
 # and so on) as they will fail if something goes wrong.
 Management.import_terms
 Management.import_departments
+Management.import_courses

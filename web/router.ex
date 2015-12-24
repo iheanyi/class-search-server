@@ -19,5 +19,6 @@ defmodule ClassSearch.Router do
 
     resources "/terms", TermController
     resources "/departments", DepartmentController
+    resources "/courses", CourseController
   end
 end

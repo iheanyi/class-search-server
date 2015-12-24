@@ -158,13 +158,15 @@ defmodule Scraper do
           [instructor_last, instructor_first] = instructor_name_array
           instructor = "#{instructor_first} #{instructor_last}"
           instructor_obj = %{
-            name: "#{instructor_first} #{instructor_last}",
+            first_name: instructor_first,
+            last_name: instructor_last,
+            full_name: "#{instructor_first} #{instructor_last}",
             instructor_id: instructor_id,
           }
         else 
           # The instructor will probably be TBA -_-
           instructor_obj = %{
-            name: "TBA",
+            full_name: "TBA",
             instructor_id: "",
           }
         end
@@ -224,7 +226,7 @@ defmodule Scraper do
       IO.puts "Times: #{Enum.join(times, ", ")}"
       
       formatted_instructors = instructors
-      |> Enum.map(fn instructor -> instructor.name end)
+      |> Enum.map(fn instructor -> instructor.full_name end)
       |> Enum.join(", ")
       
       IO.puts "Instructor(s): #{formatted_instructors}"
@@ -238,15 +240,19 @@ defmodule Scraper do
         section: course_section,
         course_number: course_num,
         timeslots: timeslots,
-        times: "#{Enum.join(times, ", ")}",
+        times: times,
         crn: course_reg_number,
         term: term,
+        department: dept,
         credits: credits,
         open_seats: open_seats,
         max_seats: max_seats,
+        begin_dates: begin_dates,
+        end_dates: end_dates,
         begin_date: begin_date,
         end_date: end_date,
         location: location,
+        locations: locations,
         books_link: course_books_link,
         instructors: instructors
       }
@@ -310,14 +316,14 @@ defmodule Scraper do
     all_courses = Enum.map(terms, fn term -> 
       IO.puts term.value
       #Task.start_link fn ->
-        courses = Enum.map(depts, fn dept -> 
-          dept_courses = fetch_term_dept_html(term.value, dept.value)
+        dept_courses = Enum.map(depts, fn dept -> 
+          courses = fetch_term_dept_html(term.value, dept.value)
           %{
             dept: %{
               name: String.strip(dept.name),
               value: dept.value,
             },
-            courses: dept_courses,
+            courses: courses,
           }
         end)
         #end
@@ -326,7 +332,7 @@ defmodule Scraper do
             name: String.strip(term.name),
             value: term.value,
           },
-          dept_courses: courses,
+          dept_courses: dept_courses,
         }
     end)
 
