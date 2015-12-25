@@ -5,7 +5,7 @@ defmodule ClassSearch.Department do
   @derive {Phoenix.Param, key: :tag}
   schema "departments" do
     field :name, :string
-
+    has_many :courses, ClassSearch.Course
     timestamps
   end
 

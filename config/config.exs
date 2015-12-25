@@ -32,6 +32,8 @@ config :plug, :mimes, %{
   "application/vnd.api+json" => ["json-api"]
 }
 
+config :ja_serializer,
+  key_format: :underscored
 
 # This line was automatically added by ansible-elixir-stack setup script
 if System.get_env("SERVER") do

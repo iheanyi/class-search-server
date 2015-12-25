@@ -5,7 +5,7 @@ defmodule ClassSearch.CourseController do
 
   plug :scrub_params, "course" when action in [:create, :update]
 
-  def index(conn, _params) do
+  def index(conn, params) do
     courses = Repo.all(Course)
     render(conn, "index.json", courses: courses)
   end

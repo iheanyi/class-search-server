@@ -3,6 +3,9 @@ defmodule ClassSearch.DepartmentView do
 
   attributes [:name, :tag]
 
+  has_many :courses,
+    include: true
+  
   def id(model, _conn), do: model.tag
 
   def render("index.json", %{departments: departments}) do
