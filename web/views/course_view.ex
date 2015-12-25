@@ -1,8 +1,11 @@
 defmodule ClassSearch.CourseView do
   use ClassSearch.Web, :view
 
-  location "/courses/:id"
   attributes [:course_number, :name]
+  
+  #has_one :department,
+  #serializer: ClassSearch.DepartmentView,
+  #include: true
 
   def render("index.json", %{courses: courses}) do
     %{data: render_many(courses, ClassSearch.CourseView, "course.json")}
