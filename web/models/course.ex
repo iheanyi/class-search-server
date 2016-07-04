@@ -5,12 +5,12 @@ defmodule ClassSearch.Course do
     field :name, :string
     field :course_number, :string
     belongs_to :department, ClassSearch.Department, references: :tag, type:
-    :string
+    :string, foreign_key: :department_id
 
     timestamps
   end
 
-  @required_fields ~w(name course_number department_id)
+  @required_fields ~w(name course_number department_tag)
   @optional_fields ~w()
 
   @doc """

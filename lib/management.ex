@@ -36,7 +36,6 @@ defmodule Management do
       old_dept = Repo.get(Department, dept.value)
 
       if is_nil old_dept do
-        
         case Repo.insert(changeset) do
           {:ok, _dept} ->
             IO.puts "Successfully inserted #{data.tag} department"
@@ -81,13 +80,16 @@ defmodule Management do
           course_changeset = Course.changeset(%Course{}, course_data)
           
           case Repo.insert(course_changeset) do 
-            {:ok, _course} ->
+            {:ok, course_record} ->
               IO.puts "Successfully inserted #{course_data.course_number} -
               #{course_data.name}."
             {:error, changeset} ->
               IO.puts "Error inserting #{course_data.name} into database.
               #{Enum.join(changeset.errors, ",")}"
           end
+
+        else
+          course_record = List.first(course_records)
         end
 
         # Section specific information
@@ -104,6 +106,20 @@ defmodule Management do
         section_books_url = course.books_link
         section_term = course.term
         section_location = course.locations
+
+
+        # Add in Instructor Changeset and Migrations.
+
+        # Add in Location Changeset and Migrations.
+
+        # Add in Timeslot Changeset and Migrations.
+
+        section = Repo.get!(section_crn)
+
+        if is_nil section do
+          # Get Section Data for insertion.
+          section_data = %{}
+        end
         end)
       end)
       end)

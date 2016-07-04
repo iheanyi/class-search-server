@@ -4,7 +4,7 @@ defmodule Scraper.Utils do
   strings.
   """
   def filter_binary_and_strip(arr) do
-    Enum.filter_map(arr, fn x -> (is_binary x) end, fn item ->
+    values = Enum.filter_map(arr, fn x -> (is_binary x) end, fn item ->
       item
       |> String.strip
       |> clean_num_string 

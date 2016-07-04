@@ -14,6 +14,8 @@ config :class_search, ClassSearch.Endpoint,
   pubsub: [name: ClassSearch.PubSub,
            adapter: Phoenix.PubSub.PG2]
 
+config :class_search, ecto_repo: ClassSearch.Repo
+
 # Configures Elixir's Logger
 config :logger, :console,
   format: "$time $metadata[$level] $message\n",

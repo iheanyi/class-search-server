@@ -6,6 +6,7 @@ defmodule ClassSearch.Department do
   schema "departments" do
     field :name, :string
     has_many :courses, ClassSearch.Course
+
     timestamps
   end
 

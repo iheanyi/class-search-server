@@ -4,10 +4,20 @@ defmodule ClassSearch.DepartmentView do
   attributes [:name, :tag]
 
   has_many :courses,
-    include: true
-  
+  include: true
+
   def id(model, _conn), do: model.tag
 
+  def courses(model, conn) do
+    case model.courses do
+      %Ecto.Association.NotLoaded{} ->
+        model
+        |> Ecto.Model.assoc(:courses)
+        |> ClassSearch.Repo.all
+        other -> other
+    end
+  end
+  
   def render("index.json", %{departments: departments}) do
     %{data: render_many(departments, ClassSearch.DepartmentView, "department.json")}
   end

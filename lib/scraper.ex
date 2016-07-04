@@ -7,7 +7,7 @@ defmodule Scraper do
   Initialize the initial page and everything.
   """
   def initialize(page \\ :initial) do
-    Scraper.Search.start_link(page)
+    #Scraper.Search.start_link(page)
   end
   
   @doc """
@@ -235,6 +235,7 @@ defmodule Scraper do
       IO.puts "Starts #{begin_date} and Ends #{end_date}"
       IO.puts "Location: #{location}"
       IO.puts "Books Link: #{course_books_link}"
+
       course_section_obj = %{
         name: course_title,
         section: course_section,
@@ -279,7 +280,7 @@ defmodule Scraper do
       
       course_sections = Floki.find(html, "#resulttable tbody tr")
 
-      course_sections
+      formatted_sections = course_sections
       |> Enum.map(fn {_, _, section} -> 
         process_section_html(section, term, dept)
       end
@@ -312,7 +313,11 @@ defmodule Scraper do
     terms = fetch_terms
     |> Enum.slice(0..1)
     depts = fetch_departments
-    
+   
+    # Fetch Term Department HTML
+    # Process the Courses out of it
+    # Then format the sections for it
+
     all_courses = Enum.map(terms, fn term -> 
       IO.puts term.value
       #Task.start_link fn ->

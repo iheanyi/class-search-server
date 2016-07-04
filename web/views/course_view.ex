@@ -3,7 +3,7 @@ defmodule ClassSearch.CourseView do
 
   attributes [:course_number, :name]
   
-  #has_one :department,
+  has_one :department, field: :department_id
   #serializer: ClassSearch.DepartmentView,
   #include: true
 
