@@ -286,6 +286,8 @@ defmodule Scraper do
       end
       )
 
+      IO.puts "Formatted Sections"
+      IO.inspect(formatted_sections)
   end
 
   @doc """

@@ -92,6 +92,7 @@ defmodule Management do
           course_record = List.first(course_records)
         end
 
+        
         # Section specific information
         section_number = course.section
           

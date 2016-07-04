@@ -1,3 +1,5 @@
+require IEx
+
 defmodule Scraper.Utils do
   @doc """
   Filters out binary strings from the array and returns the array of the cleaned
